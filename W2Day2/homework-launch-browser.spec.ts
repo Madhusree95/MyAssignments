@@ -1,4 +1,4 @@
-import {test} from "@playwright/test"
+import {test,expect} from "@playwright/test"
 test('launch redbus',async ({page})=>{
     await page.goto( "https://www.redbus.in" );//launching redbus
     console.log(await page.title());
