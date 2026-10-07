@@ -1,0 +1,27 @@
+1. Why was verifyPage() placed inside an Interface?
+
+• To force a mandatory safety rule: It ensures no developer forgets to verify that a page is fully loaded before interacting with it.
+• To allow unique checks: Different pages load differently (e.g., Login needs a login button, Dashboard needs a chart). The interface forces everyone to write a check, but lets them choose how to check it.
+
+2. Can an Interface contain a method implementation? What happens?
+
+• No. It triggers a Syntax Error (ts(1183)).
+• Why: An interface is a pure blueprint with zero runtime footprint. TypeScript completely erases interfaces during compilation to JavaScript, leaving no place for actual code to execute.
+
+3. What keyword is used to follow Interface rules?
+
+• implements
+
+4. Why was waitForPageLoad() implemented inside BasePage?
+
+• To stop code duplication (DRY Principle): Every single webpage waits for the browser to load in the exact same way.
+• To ease maintenance: Writing it once in the parent class means if your loading logic changes in the future, you only fix it in one place instead of editing 50 separate files.
+
+5. Can we create an object for BasePage?
+
+• No, if it is abstract: It throws a Compile Error because abstract classes are incomplete templates meant only to be inherited.
+• Yes, if you remove abstract: Turning it into a regular class allows new BasePage(), but this is discouraged in test frameworks to prevent creating empty, useless pages.
+
+6. What keyword is used to inherit from an Abstract Class?
+
+• extends
